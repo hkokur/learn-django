@@ -1,0 +1,29 @@
+{% extends 'base/base.html'%}
+
+{%block body%}
+
+{% for post in post_list %}
+<div>
+    <br>
+    <a href="">{{ post.title }}</a><br>
+    <i>
+        {% if post.author is not None %}
+            Author: {{ post.author }},
+        {% else %}
+            Author: Unknown,
+        {% endif %}
+        Update: {{ post.update }}</i>
+    <p>{{ post.content|truncatewords:200 }}</p>
+</div>
+{% endfor %}
+<div>
+    {% if page_obj.has_previous %}
+    <a href="{% url 'class_pagination' page_obj.previous_page_number %}">Previous | </a>
+    {% endif%}
+    <a>{{ page_obj.number }}</a>
+    {% if page_obj.has_next %}
+    <a href="{% url 'class_pagination' page_obj.next_page_number %}"> | Next</a>
+    {% endif%}
+</div>
+
+{%endblock%}

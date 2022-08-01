@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>
+  <title>{%block title%}{%endblock%}</title>
+</head>
+<body>
+  <div class="container">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'blog' %}">Blog</a>
+  </div>
+  {%block body%}
+  {%endblock%}
+</body>

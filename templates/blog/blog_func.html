@@ -1,0 +1,29 @@
+{% extends 'base/base.html'%}
+
+{%block body%}
+
+{% for post in post_list %}
+<div>
+    <br>
+    <a href="">{{ post.title }}</a><br>
+    <i>
+        {% if post.author is not None %}
+            Author: {{ post.author }},
+        {% else %}
+            Author: Unknown,
+        {% endif %}
+        Update: {{ post.update }}</i>
+    <p>{{ post.content|truncatewords:200 }}</p>
+</div>
+{% endfor %}
+<div>
+    {% if post_list.has_previous %}
+    <a href="{% url 'func_pagination' post_list.previous_page_number %}">Previous | </a>
+    {% endif%}
+    <a>{{ post_list.number }}</a>
+    {% if post_list.has_next %}
+    <a href="{% url 'func_pagination' post_list.next_page_number %}"> | Next</a>
+    {% endif%}
+</div>
+
+{%endblock%}
