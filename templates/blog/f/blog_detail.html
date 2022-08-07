@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+<div>
+    <h1>Function-Based Detail View</h1>
+    <h3>{{ post.title }}</h3>
+    <i>
+        {% if post.author is not None %}
+            Author: {{ post.author }},
+        {% else %}
+            Author: Unknown,
+        {% endif %}
+        Update: {{ post.update }},
+        Create: {{ post.create }},
+        Status: {{ post.get_status_display }}
+    </i>
+    <p>{{ post.content }}</p>
+    <a href="{% url 'func_create' %}"> New Post </a>
+    <a href="{% url 'func_update' post.slug %}">| Update </a>
+    <a href="{% url 'func_delete' post.slug %}">| Delete </a>
+</div>
+{% endblock%}

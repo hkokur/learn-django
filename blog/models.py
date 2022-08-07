@@ -19,7 +19,7 @@ class Post(models.Model):
         null = True
     )
     content = models.TextField(blank=True, null=True)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, unique=True)
 
     def __str__(self):
         return self.title
@@ -28,4 +28,5 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
 

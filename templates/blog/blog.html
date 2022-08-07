@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
 
 {% block body%}
+<div>
 <h2><a href="{% url 'func_pagination' 1 %}"> Function-Based View </a></h2>
 <h2><a href = "{% url 'class_pagination' 1 %}"> Class-Based View</a></h2>
+</div>
 {% endblock %}

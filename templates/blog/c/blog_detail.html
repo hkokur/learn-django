@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+<div>
+    <h1>Class-Based Detail View</h1>
+    <h3>{{ object.title }}</h3>
+    <i>
+        {% if object.author is not None %}
+            Author: {{ object.author }},
+        {% else %}
+            Author: Unknown,
+        {% endif %}
+        Update: {{ object.update }},
+        Create: {{ object.create }},
+        Status: {{ object.get_status_display }}
+    </i>
+    <p>{{ object.content }}</p>
+    <a href="{% url 'class_create' %}"> New Post </a>
+    <a href="{% url 'class_update' object.slug %}">| Update </a>
+    <a href="{% url 'class_delete' object.slug %}">| Delete </a>
+</div>
+{% endblock%}

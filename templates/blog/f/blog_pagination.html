@@ -2,17 +2,29 @@
 
 {%block body%}
 
+<div>
+    <h1>Function-Based Pagination</h1>
+</div>
+<div>
+    <h2><a href="{% url 'func_create' %}">C</a>
+        <a href="{% url 'func_detail' 'get-random-post' %}">R</a>
+        <a href="{% url 'func_update' 'get-random-post' %}">U</a>
+        <a href="{% url 'func_delete' 'get-random-post' %}">D</a>
+    </h2>
+</div>
 {% for post in post_list %}
 <div>
     <br>
-    <a href="">{{ post.title }}</a><br>
+    <a href="{% url 'func_detail' post.slug %}">{{ post.title }}</a><br>
     <i>
         {% if post.author is not None %}
             Author: {{ post.author }},
         {% else %}
             Author: Unknown,
         {% endif %}
-        Update: {{ post.update }}</i>
+        Update: {{ post.update }},
+        Status: {{ post.get_status_display }}
+    </i>
     <p>{{ post.content|truncatewords:200 }}</p>
 </div>
 {% endfor %}
