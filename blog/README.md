@@ -1,5 +1,5 @@
 # Summary
-In this section, my purpose have performed CRUD implementaion. When i have been implementing, i have apoted both two aproach, function-based and class-based view. When i have said class-based view, i have refered to generic-class-based view because writing class from scracth to perform CRUD is slow and also django provide us well predefined classes. 
+In this section, my purpose have performed CRUD implementation. When i have been implementing, i have apoted both two aproach, function-based and class-based view. When i have said class-based view, i have refered to generic-class-based view because writing class from scracth to perform CRUD is slow and also django provide us well predefined classes. 
 
 # Function-Based View
 C => I have created a form(you can see in form.py) to take data from user. i have sent empty form to user when i have taken GET request. User have sent filled form via POST request and i have checked wheter all value is valid or not. If all value have been valid, add user that logined user or none and save form to database, redirect detail view of page created.
