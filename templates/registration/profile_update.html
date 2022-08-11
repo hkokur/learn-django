@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+<div class="text-center pt-4">
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </p>
+        <p>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </p>
+        <p>
+            You can change password <a href="{% url 'password_change' %}">here.</a>
+        </p>
+        <button type="submit">Update</button>
+    </form>
+</div>
+{% endblock%}

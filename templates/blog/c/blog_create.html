@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% block body %}
-<div>
+<div class="text-center">
     <h2> Class-Based Create View</h2>
     <form method="POST">{% csrf_token %}
         {{ form.as_p }}

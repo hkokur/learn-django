@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from django.conf import settings
+
 
 STATUS = [
     ("dr", "draft"),
@@ -13,7 +15,7 @@ class Post(models.Model):
     update = models.DateField(auto_now=True)
     create = models.DateField(auto_now_add=True)
     author = models.ForeignKey(
-        "auth.user",
+        settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         blank = True,
         null = True

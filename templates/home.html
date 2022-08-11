@@ -2,3 +2,33 @@
 
 {%block title%} Home Page {%endblock%}
 
+{% block navbar %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+    <div class="row text-center">
+        <h2 class="">Apps</h2>
+    </div>
+    <div class="row pt-2 text-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <a class="" href="{% url 'blog' %}">
+                        <h5 class="card-title">Blog</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <a class="" href="{% url 'accounts' %}">
+                        <h5 class="card-title">Accounts</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

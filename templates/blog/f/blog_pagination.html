@@ -2,10 +2,10 @@
 
 {%block body%}
 
-<div>
+<div class="text-center">
     <h1>Function-Based Pagination</h1>
 </div>
-<div>
+<div class="text-center">
     <h2><a href="{% url 'func_create' %}">C</a>
         <a href="{% url 'func_detail' 'get-random-post' %}">R</a>
         <a href="{% url 'func_update' 'get-random-post' %}">U</a>
@@ -13,7 +13,7 @@
     </h2>
 </div>
 {% for post in post_list %}
-<div>
+<div class="text-center">
     <br>
     <a href="{% url 'func_detail' post.slug %}">{{ post.title }}</a><br>
     <i>
@@ -28,7 +28,7 @@
     <p>{{ post.content|truncatewords:200 }}</p>
 </div>
 {% endfor %}
-<div>
+<div class="text-center">
     {% if post_list.has_previous %}
     <a href="{% url 'func_pagination' post_list.previous_page_number %}">Previous | </a>
     {% endif%}
