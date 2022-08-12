@@ -6,10 +6,12 @@ i have created CustomUserModel that inherite from AbstractUser. I have wanted to
 
 # Form
 CustomUserCreationForm => To add user to database. Thank to django, Parent handle password hashing, permission setting etc during creating. 
+
 CustomUserChangeForm => It is for update some user attributes but doesn't include password changing.  
 
 # View
 SignUpView => Inherited from CreateView. Uses for sign up.
+
 UpdateProfileView => Inherited from UpdateView and UserPassesTestMixin. It check user that want to edit attributes to understand whether user is itself or not before send form.
 
 Other login, logout or password changing etc. views been handled by django. 
