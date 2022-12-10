@@ -1,3 +1,10 @@
 .venv
 .env
 __pycache__/
+Procfile
+runtime.txt
+
+# for visual studio code
+.vscode
+
+db.sqlite3.back

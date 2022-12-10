@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+<div class="container">
+    <div  class="row mt-4 text-center">
+        {% if user.is_authenticated %}
+            <p>Username : {{user.username}}</p>
+            <p>Email Address : {{user.email}}</p>
+            <p>
+                You have an account but you don't have any role. Please, select a role that you want.
+            </p>
+        {% endif %}
+        <p>
+            Select an user role. After the selection, you will redirect to proper registration page.
+            If you don't <a href="{% url 'profile-login'%}">login</a> any account, you will create basic account first. 
+        </p>        
+    </div>
+    <div class="row mt-4 text-center">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                Register
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

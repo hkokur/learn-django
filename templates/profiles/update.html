@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-4 text-center">
+        {% if user.profile.creator %}
+        <p>
+            You are a <bold class="fw-bold">Creator</bold>. You can join content and review creator group in <a href="{% url 'authorization-main' %}">here</a>
+        </p>
+        <p>
+            Total Created Content : {{user.profile.creator.number_of_content}}
+        </p>
+        {% elif user.profile.editor %}
+        <p>
+            You are an <bold class="fw-bold">Editor</bold>. You can join content and meta editor group in <a href="{% url 'authorization-main' %}">here</a>
+        </p>
+        <p>
+            Total Edited Content :  {{ user.profile.editor.number_of_edited_content }}
+        </p>
+        {% else %}
+        <p>
+            You are normal user with profile informations. You can join special user group in <a href="{% url 'authorization-main' %}">here</a>. 
+            To create or edit a post, change your role from change role from. 
+        </p>
+        {% endif %}
+    </div>
+
+    {% if user_form %}
+    <div class="row mt-4 text-center">
+        <h2> User Informations </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <button type="submit" name="user_form">
+                Update
+            </button>
+        </form>
+    </div>
+    {% endif %}
+    {% if profile_form %}
+    <div class="row mt-4 text-center">
+        <h2> Profile Informations </h2>
+        {% if user.profile.profile_picture %}
+        <div class="col-4">
+            <img src="{{ user.profile.profile_picture.url }}" class="img-fluid" alt="profile picture">
+        </div>
+        {% endif %}
+        <div class="col-8">
+            <form enctype="multipart/form-data" method="post">    
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                <button type="submit" name="profile_form">
+                    Update
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    {% if salary_form %}
+    <div class="row mt-4 text-center">
+        <h2> Salary Information </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ salary_form.as_p }}
+            <button type="submit" name="salary_form">
+                Update
+            </button>
+        </form>
+    </div>
+    {% endif %}
+    <div class="row mt-4 text-center">
+        <h2> Role Change Form </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ role_form }}
+            <button name="role_form">
+                Update
+            </button>
+        </form>
+    </div>
+    <div class="row mt-4 text-center">
+        <p>
+            <a href="{% url 'profile-logout' %}">
+                Logout
+            </a>
+        </p>
+    </div>
+
+</div>
+{% endblock %}

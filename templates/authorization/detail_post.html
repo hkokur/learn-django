@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row pt-4">
+        <h1 class="text-center">
+            {{ post.title }}
+        </h1>
+        <br>
+        <p class="text-muted">
+            Author: {{ post.author}}
+            <br>
+            Update Date: {{post.updated_at}}
+            <br>
+            Published Date: {{post.published_at}}
+            <br>
+            Status: {{post.get_status_display}}
+        </p>
+        <p class="text-end">
+            <a href="{% url 'authorization-meta-post' uuid=post.uuid %}">
+                <i class="bi-pencil-fill">Edit Meta Informations</i> 
+            </a>
+        </p>
+    </div>
+    <div class="row pt-3">
+        <p>
+            {{post.content}}
+        </p>
+        <p class="text-end">
+            <a href="{% url 'authorization-content-post' uuid=post.uuid %}">
+                <i class="bi-pencil-fill">Edit Content Informations</i> 
+            </a>
+        </p>
+    </div>
+    <div class="row pt-3 text-center">
+        <p>
+            <a href="{% url 'authorization-delete-post' uuid=post.uuid %}">
+                <i class="bi-trash-fill">Delete Post Permanently</i>
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row pt-4">
+        <h1 class="text-center">
+            {{ review.title }}
+        </h1>
+        <br>
+        <p class="text-muted">
+            Author: {{review.author}}
+            <br>
+            Update Date: {{review.updated_at}}
+            <br>
+            Published Date: {{review.published_at}}
+            <br>
+            Status: {{review.get_status_display}}
+            <br>
+            About Post: 
+            <a href="{% url 'authorization-detail-post' slug=review.post.slug uuid=review.post.uuid  %}">
+                {{review.post.title}}
+            </a>
+        </p>
+        <p class="text-end">
+            <a href="{% url 'authorization-meta-review' uuid=review.uuid %}">
+                <i class="bi-pencil-fill">Edit Meta Informations</i> 
+            </a>
+        </p>
+    </div>
+    <div class="row pt-3">
+        <p>
+            {{review.content}}
+        </p>
+        <p class="text-end">
+            <a href="{% url 'authorization-content-review' uuid=review.uuid %}">
+                <i class="bi-pencil-fill">Edit Content Informations</i> 
+            </a>
+        </p>
+    </div>
+    <div class="row pt-3 text-center">
+        <p>
+            <a href="{% url 'authorization-delete-review' uuid=review.uuid %}">
+                <i class="bi-trash-fill">Delete Review Permanently</i>
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}

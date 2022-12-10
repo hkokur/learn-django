@@ -5,7 +5,7 @@
     <h2>Your Information</h2>
     {% if user.is_authenticated %}
     <p>You are {{ user.username }}</p>
-    <p>Your emails is {{ user.email }}</p>
+    <p>Your email is {{ user.email }}</p>
     {% else %}
     <p>You are Unknown</p>
     {% endif %}

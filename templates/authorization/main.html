@@ -1,0 +1,124 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-4 text-center">
+        <div class="col-12 py-2 bg-warning">
+            <p>
+                If you not log in, you can only see posts that are published. To <a href="{% url 'profile-login'%}"> Log In</a>
+            </p>
+            <p>
+                To perform any action below, you must have <a href="{% url 'profile-main' %}">profile</a>. 
+            </p>
+        </div>
+        <div class="col-12 py-2 bg-info">
+            <h5>Groups:</h5>
+            <p>
+                <bold class="fw-bolder">
+                    Content Editor:
+                </bold>
+                can edit content(title and text) of any post or review. 
+                <br>
+                <bold class="fw-bolder">
+                    Meta Editor: 
+                </bold>
+                can edit meta data(status, published date and slug) of any post or review
+                <br>
+                <bold class="fw-bolder">
+                    Post Creator: 
+                </bold>
+                can create post and edit only himself post.
+                <br>
+                <bold class="fw-bolder">
+                    Review Creator: 
+                </bold>
+                can creat review and edit only himself review.
+                <br>
+                <bold class="fw-bolder">
+                    Special Users: 
+                </bold>
+                can delete permanently any post or review. (Meta Editors can only change status from published to delete, can't delete permanently)
+            </p>
+            <p class="fst-italic">
+                Note : You have to be editor to attempt the editors groups and also to be creators to attempt the creator roles. You can change your role from
+                <a href="{% url 'profile-update' %}">
+                    profile page.
+                </a>
+            </p>
+        </div>
+        {% for  group in user.groups.all %}
+        <div class="col-12 pt-3 text-success">
+            <p>Your group is 
+                <bold class="fw-bolder">
+                    {{group}}
+                </bold>
+            </p>
+        </div>
+        {% endfor %}
+        <a href="{% url 'authorization-group' %}">
+            <div class="col-12 pt-3">
+                Change or Select Group
+            </div>
+        </a>
+    </div>
+    <div class="row pt-3 text-center">
+        <div class="col-6">
+            <a href="{% url 'authorization-add-post' %}">
+                Add Post
+            </a>
+        </div>
+        <div class="col-6">
+            <a href="{% url 'authorization-add-review' %}">
+                Add Review
+            </a>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <h2 class="text-center">
+            Posts
+        </h2>
+        {% for post in all_posts %}
+        <div class="col-4 text-center mt-3">
+            <div class="card">
+                <h5 class="card-title">
+                    {{post.title}}
+                </h5>
+                <h6 class="card-subtitle mb-3 text-muted">
+                    Author: {{post.author}}, Status: {{post.get_status_display}}
+                </h6>
+                <p class="card-text">
+                    {{post.content|truncatechars:100}}
+                </p>
+                <a href="{% url 'authorization-detail-post' slug=post.slug uuid=post.uuid  %}">
+                    More
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row pt-5">
+        <h2 class="text-center">
+            Reviews
+        </h2>
+        {% for review in all_reviews %}
+        <div class="col-4 text-center mt-3">
+            <div class="card">
+                <h5 class="card-title">
+                    {{review.title}}
+                </h5>
+                <h6 class="card-subtitle mb-3 text-muted">
+                    Author: {{review.author}}, Status: {{review.get_status_display}}
+                </h6>
+                <p class="card-text">
+                    {{review.content|truncatechars:100}}
+                </p>
+                <a href="{% url 'authorization-detail-review' slug=review.slug uuid=review.uuid  %}">
+                    More
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}
